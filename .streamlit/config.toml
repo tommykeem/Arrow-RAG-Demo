@@ -1,0 +1,19 @@
+[theme]
+base="dark"
+primaryColor="#0084d5"
+backgroundColor="#0e1117"
+secondaryBackgroundColor="#001f3f"
+
+[server]
+port=8501 # change port number. By default streamlit uses 8501 port
+headless=true # This will eliminate automatically open browser
+# enableCORS=false 
+# enableXsrfProtection=false 
+# enableWebsocketCompression=false
+
+# Enable the following code block to deploy on an nginx server:
+
+#[browser] # This ip and port will show in command prompt
+#serverAddress = "10.10.0.218"# Put your Local IP or Domain Name
+#serverPort = 9000  #nginx port
+

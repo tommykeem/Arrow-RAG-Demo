@@ -1,0 +1,8 @@
+streamlit
+st-theme
+langchain-ollama
+langchain-community
+langchain-huggingface
+langchain-nvidia-ai-endpoints
+langchain-unstructured
+faiss-cpu

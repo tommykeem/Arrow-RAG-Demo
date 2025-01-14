@@ -1,0 +1,49 @@
+/* Custom Font */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100..800&display=swap');
+body * {
+    font-family: 'Montserrat', sans-serif !important;
+} 
+
+[class^=st-emotion] {
+    font-family: 'Montserrat', sans-serif !important;
+} 
+
+
+
+/* Arrow Main Logo */
+.st-emotion-cache-19u4bdk img{
+    width: 150px;
+    height: auto;
+    transform: translate(25px, -25px);
+}  
+
+/* Arrow Sidebar Logo */
+.st-emotion-cache-6qob1r img{
+    width: 400px;
+    height: auto;
+    transform: translate(15px, 0px);
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+     
+/* Sidebar */
+div[class='css-4z1n4l ehezqtx5']{
+    background: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    border-radius: 15px;
+    height: 40px;
+    max-width: 160px;
+
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+  }
+
+  div[class='st-emotion-cache-1sno8jx e1nzilvr4'] {
+    color: #000000;
+  }
+
+
