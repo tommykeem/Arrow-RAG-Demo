@@ -24,6 +24,8 @@ working_dir = os.path.dirname(os.path.abspath(__file__))
 if os.getenv('NVIDIA_API_KEY') is None:
     raise ValueError('NVIDIA_API_KEY environment variable is not set')
 
+NVIDIA_API_KEY = os.getenv('NVIDIA_API_KEY')
+
 # Initialize default LLM configuration for Ollama
 llm = OllamaLLM(
     model="llama3.1:latest",
