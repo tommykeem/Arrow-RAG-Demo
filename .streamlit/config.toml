@@ -7,9 +7,11 @@ secondaryBackgroundColor="#001f3f"
 [server]
 port=8501 # change port number. By default streamlit uses 8501 port
 headless=true # This will eliminate automatically open browser
+browser.gatherUsageStats=false # Turns off browser usage stats gathering
 # enableCORS=false 
 # enableXsrfProtection=false 
 # enableWebsocketCompression=false
+
 
 # Enable the following code block to deploy on an nginx server:
 
