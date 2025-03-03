@@ -1,39 +1,95 @@
 environment:
   base:
-    apps: []
-    build_timestamp: '20231011102429'
-    cuda_version: '11.8'
-    description: The huggingface text-generation-interface base container
+    apps:
+    - class: webapp
+      health_check_command: curl -f "http://localhost:8080/"
+      icon_url: ''
+      logfile_path: ''
+      name: control-panel
+      start_command: cd /project/code/ && PROXY_PREFIX=$PROXY_PREFIX python3 -m chatui
+      stop_command: pkill -f "^python3 -m chatui$"
+      timeout_seconds: 60
+      type: custom
+      user_msg: ''
+      webapp_options:
+        autolaunch: true
+        port: '8080'
+        proxy:
+          trim_prefix: false
+        url: http://localhost:8080/
+    - class: webapp
+      health_check_command: curl -f "http://localhost:8081/"
+      icon_url: ''
+      logfile_path: ''
+      name: public-chat
+      start_command: cd /project/code/ && PROXY_PREFIX=$PROXY_PREFIX python3 -m chatui_public
+      stop_command: pkill -f "^python3 -m chatui_public"
+      timeout_seconds: 60
+      type: custom
+      user_msg: ''
+      webapp_options:
+        autolaunch: true
+        port: '8081'
+        proxy:
+          trim_prefix: false
+        url: http://localhost:8081/
+    - class: webapp
+      health_check_command: '[ \$(echo url=\$(jupyter lab list | head -n 2 | tail
+        -n 1 | cut -f1 -d'' '' | grep -v ''Currently'' | sed "s@/?@/lab?@g") | curl
+        -o /dev/null -s -w ''%{http_code}'' --config -) == ''200'' ]'
+      icon_url: ''
+      logfile_path: ''
+      name: jupyterlab
+      start_command: jupyter lab --allow-root --port 8888 --ip 0.0.0.0 --no-browser
+        --NotebookApp.base_url=\$PROXY_PREFIX --NotebookApp.default_url=/lab --NotebookApp.allow_origin='*'
+      stop_command: jupyter lab stop 8888
+      timeout_seconds: 60
+      type: jupyterlab
+      user_msg: ''
+      webapp_options:
+        autolaunch: true
+        port: '8888'
+        proxy:
+          trim_prefix: false
+        url_command: jupyter lab list | head -n 2 | tail -n 1 | cut -f1 -d' ' | grep
+          -v 'Currently'
+    build_timestamp: '20231214221614'
+    cuda_version: '12.2'
+    description: A Python Base with CUDA 12.2
     entrypoint_script: ''
     icon_url: ''
-    image: huggingface/text-generation-inference:2.3.0
-    image_version: 1.0.0
+    image: nvidia/ai-workbench/python-cuda122:1.0.3
+    image_version: 1.0.3
     labels:
-    - ubuntu
-    - python3
-    - jupyterlab
-    name: TGI
+    - cuda12.2
+    name: Python with CUDA 12.2
     os: linux
     os_distro: ubuntu
-    os_distro_release: '20.04'
+    os_distro_release: '22.04'
     package_manager_environment:
       name: ''
       target: ''
     package_managers:
     - binary_path: /usr/bin/apt
       installed_packages:
-      - ca-certificates
       - curl
+      - git
+      - git-lfs
+      - python3
+      - gcc
+      - python3-dev
+      - python3-pip
+      - vim
       name: apt
-    - binary_path: /opt/conda/bin/pip
-      installed_packages: []
+    - binary_path: /usr/local/bin/pip
+      installed_packages:
+      - jupyterlab==4.0.7
       name: pip
     programming_languages:
     - python3
-    registry: ghcr.io
+    registry: nvcr.io
     schema_version: v2
-    supported_architectures:
-    - amd64
+    supported_architectures: []
     user_info:
       gid: ''
       uid: ''
@@ -48,7 +104,7 @@ execution:
   resources:
     gpu:
       requested: 1
-    sharedMemoryMB: 4096
+    sharedMemoryMB: 1024
   secrets: []
 layout:
 - path: static/
@@ -58,10 +114,9 @@ layout:
   storage: git
   type: code
 meta:
-  createdOn: '2023-11-13T16:10:06Z'
+  createdOn: '2024-09-05T21:26:55Z'
   defaultBranch: main
-  description: A project to chat with your own data locally, in the cloud, or using
-    a microservice
+  description: A project in NVIDIA AI Workbench to build a multimodal virtual assistant.
   image: project-Arrow-RAG-Demo
   labels: []
   name: Arrow-RAG-Demo
