@@ -117,8 +117,8 @@ meta:
   createdOn: '2024-09-05T21:26:55Z'
   defaultBranch: main
   description: A project in NVIDIA AI Workbench to build a multimodal virtual assistant.
-  image: project-Arrow-RAG-Demo
+  image: project-arrow-rag-demo
   labels: []
-  name: Arrow-RAG-Demo
+  name: arrow-rag-demo
 specMinorVersion: 2
 specVersion: v2
