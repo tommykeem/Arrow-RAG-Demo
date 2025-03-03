@@ -1,0 +1,69 @@
+environment:
+  base:
+    apps: []
+    build_timestamp: '20231011102429'
+    cuda_version: '11.8'
+    description: The huggingface text-generation-interface base container
+    entrypoint_script: ''
+    icon_url: ''
+    image: huggingface/text-generation-inference:2.3.0
+    image_version: 1.0.0
+    labels:
+    - ubuntu
+    - python3
+    - jupyterlab
+    name: TGI
+    os: linux
+    os_distro: ubuntu
+    os_distro_release: '20.04'
+    package_manager_environment:
+      name: ''
+      target: ''
+    package_managers:
+    - binary_path: /usr/bin/apt
+      installed_packages:
+      - ca-certificates
+      - curl
+      name: apt
+    - binary_path: /opt/conda/bin/pip
+      installed_packages: []
+      name: pip
+    programming_languages:
+    - python3
+    registry: ghcr.io
+    schema_version: v2
+    supported_architectures:
+    - amd64
+    user_info:
+      gid: ''
+      uid: ''
+      username: ''
+execution:
+  apps: []
+  mounts:
+  - description: Project directory
+    options: rw
+    target: /project/
+    type: project
+  resources:
+    gpu:
+      requested: 1
+    sharedMemoryMB: 4096
+  secrets: []
+layout:
+- path: static/
+  storage: git
+  type: code
+- path: docs/
+  storage: git
+  type: code
+meta:
+  createdOn: '2023-11-13T16:10:06Z'
+  defaultBranch: main
+  description: A project to chat with your own data locally, in the cloud, or using
+    a microservice
+  image: project-Arrow-RAG-Demo
+  labels: []
+  name: Arrow-RAG-Demo
+specMinorVersion: 2
+specVersion: v2
